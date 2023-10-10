@@ -9,6 +9,8 @@
 #include <networktables/NetworkTableInstance.h>
 #include <rev/CANSparkMax.h>
 #include <vector>
+#include <units/length.h>
+
 
 class Robot : public frc::TimedRobot {
  public:
@@ -26,6 +28,10 @@ class Robot : public frc::TimedRobot {
   void SimulationPeriodic() override;
 
  private:
+
+  units::meter_t getDistanceToTarget();
+  void shoot(units::meter_t distance);
+
   rev::CANSparkMax m_left{1, rev::CANSparkMax::MotorType::kBrushless};
 
   std::shared_ptr<nt::NetworkTable> m_left_table =
