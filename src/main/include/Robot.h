@@ -5,12 +5,8 @@
 #pragma once
 
 #include <frc/TimedRobot.h>
-#include <networktables/NetworkTable.h>
-#include <networktables/NetworkTableInstance.h>
-#include <rev/CANSparkMax.h>
-#include <vector>
-#include <units/length.h>
-
+#include "Vision.h"
+#include "Shooter.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -28,14 +24,6 @@ class Robot : public frc::TimedRobot {
   void SimulationPeriodic() override;
 
  private:
-
-  units::meter_t getDistanceToTarget();
-  void shoot(units::meter_t distance);
-
-  rev::CANSparkMax m_left{1, rev::CANSparkMax::MotorType::kBrushless};
-
-  std::shared_ptr<nt::NetworkTable> m_left_table =
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight-dev");
-
-  std::vector<double> m_zero_vector = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+  Vision vision;
+  Shooter shooter;
 };
