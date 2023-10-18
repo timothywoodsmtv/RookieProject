@@ -7,6 +7,7 @@
 #include <frc/TimedRobot.h>
 #include "Vision.h"
 #include "Shooter.h"
+#include "rev/ColorSensorV3.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -26,4 +27,12 @@ class Robot : public frc::TimedRobot {
  private:
   Vision vision;
   Shooter shooter;
+
+  // REV Color Sensor
+  rev::ColorSensorV3 m_colorSensor {frc::I2C::Port::kMXP};
+
+  // Get color from sensor
+  frc::Color getColor() {
+    return m_colorSensor.GetColor();
+  };
 };
