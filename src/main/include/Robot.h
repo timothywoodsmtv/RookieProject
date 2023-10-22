@@ -9,6 +9,8 @@
 #include "Shooter.h"
 #include "Intake.h"
 #include "rev/ColorSensorV3.h"
+#include <frc/XboxController.h>
+#include <frc/DriverStation.h>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -26,7 +28,10 @@ class Robot : public frc::TimedRobot {
   void SimulationPeriodic() override;
 
  private:
-  Vision  vision;
-  Shooter shooter;
-  Intake  intake;
+  Vision  m_vision;
+  Shooter m_shooter;
+  Intake  m_intake;
+
+  frc::XboxController m_stick{0};
+  frc::DriverStation::Alliance m_alliance = frc::DriverStation::Alliance::kInvalid;
 };

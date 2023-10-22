@@ -34,12 +34,16 @@ void Robot::AutonomousInit() {}
 
 void Robot::AutonomousPeriodic() {}
 
-void Robot::TeleopInit() {}
+void Robot::TeleopInit() {
+    m_alliance = frc::DriverStation::GetAlliance();
+}
 
 void Robot::TeleopPeriodic() {
   // Calculate distance to target and shoot
-  auto distance = vision.getDistanceToTarget();
-  shooter.shoot(distance);
+  //auto distance = vision.getDistanceToTarget();
+  //shooter.shoot(distance);
+
+  m_intake.run(m_stick.GetAButtonPressed(), m_alliance);
 }
 
 void Robot::DisabledInit() {}
