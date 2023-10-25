@@ -2,13 +2,17 @@
 #include <frc/DriverStation.h>
 #include <frc/Timer.h>
 #include <rev/CANSparkMax.h>
+#include <wpi/sendable/Sendable.h>
+//#include <wpi/sendable/SendableHelper.h>
+#include <wpi/sendable/SendableBuilder.h>
 
-class Intake
+class Intake : public wpi::Sendable //, public wpi::SendableHelper<Intake>
 {
 public:
     void run(bool buttonA, frc::DriverStation::Alliance alliance);
 
     frc::Color getColor();
+    void InitSendable(wpi::SendableBuilder& builder) override;
 
 private:
     enum STATE
@@ -52,5 +56,9 @@ private:
         double kMinOutput;
         double kMaxOutput;
     };
+
+    void SetP(double pGain) {  m_pidCoeff.kP = pGain; }
+    double GetP() { return m_pidCoeff.kP; }
+
     pidCoeff m_pidCoeff{0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0};
 };

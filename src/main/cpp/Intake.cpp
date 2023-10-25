@@ -1,5 +1,14 @@
 #include "Intake.h"
 
+void Intake::InitSendable(wpi::SendableBuilder &builder)
+{
+    builder.SetSmartDashboardType("Intake");
+    builder.AddDoubleProperty(
+        "pGain", [this] { return GetP(); },
+        [this](double pGain) { SetP(pGain); }
+    );
+}
+
 // Get color from sensor
 frc::Color Intake::getColor()
 {
