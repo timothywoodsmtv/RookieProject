@@ -7,6 +7,25 @@
 #include <fmt/core.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
+class Elevator {
+bool throttleup = frc::XboxController::GetAButton;
+bool throttledown = frc::XboxController::GetXButton;
+int r = 0;
+while (bool throttleup = true) {
+  r++;
+};
+while (bool throttledown = true) {
+  r--;
+};
+if ((r > 1) && (r < 500)) {
+m_left.Set(r);
+} else {
+  m_left.Set(0.0);
+};
+};
+
+
+
 void Robot::RobotInit() {}
 
 /**
